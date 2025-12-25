@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "218502104978",
+    "project_id": "fitfly-46bca",
+    "storage_bucket": "fitfly-46bca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218502104978:android:77db2d131bc87ba708e34b",
+        "android_client_info": {
+          "package_name": "com.natrajtechnology.fitfly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATHHSh5VujahYa_9o__65e6ZNcv_ZEahs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
