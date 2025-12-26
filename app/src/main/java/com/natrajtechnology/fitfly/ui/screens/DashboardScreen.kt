@@ -239,20 +239,20 @@ fun DashboardScreen(
                                 )
                             )
                         )
-                        .padding(bottom = 16.dp)
+                        .padding(bottom = 8.dp)
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 16.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                            .padding(top = 8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         // Hero header card with gradient and quick stats
                         ElevatedCard(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 16.dp)
-                                .height(200.dp),
+                                .height(140.dp),
                             shape = RoundedCornerShape(20.dp),
                             colors = CardDefaults.elevatedCardColors(
                                 containerColor = MaterialTheme.colorScheme.surface
@@ -287,44 +287,40 @@ fun DashboardScreen(
                                     Spacer(modifier = Modifier.height(8.dp))
                                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
                                         // small quick stat chips - exercise done
-                                        ElevatedCard(
-                                            shape = RoundedCornerShape(12.dp),
-                                            colors = CardDefaults.elevatedCardColors(
-                                                containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.2f)
-                                            ),
+                                        Box(
                                             modifier = Modifier
                                                 .height(44.dp)
                                                 .weight(1f)
+                                                .clip(RoundedCornerShape(12.dp))
+                                                .background(Color.White.copy(alpha = 0.15f))
+                                                .padding(horizontal = 10.dp),
+                                            contentAlignment = Alignment.CenterStart
                                         ) {
                                             Row(
-                                                modifier = Modifier
-                                                    .fillMaxSize()
-                                                    .padding(horizontal = 10.dp),
+                                                modifier = Modifier.fillMaxSize(),
                                                 verticalAlignment = Alignment.CenterVertically,
                                                 horizontalArrangement = Arrangement.spacedBy(6.dp)
                                             ) {
-                                                Icon(imageVector = Icons.Filled.Favorite, contentDescription = null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(18.dp))
+                                                Icon(imageVector = Icons.Filled.Favorite, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(18.dp))
                                                 Text("${exercises.count { it.isCompleted }} done", color = MaterialTheme.colorScheme.onPrimary, style = MaterialTheme.typography.labelSmall, maxLines = 1)
                                             }
                                         }
 
-                                        ElevatedCard(
-                                            shape = RoundedCornerShape(12.dp),
-                                            colors = CardDefaults.elevatedCardColors(
-                                                containerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.2f)
-                                            ),
+                                        Box(
                                             modifier = Modifier
                                                 .height(44.dp)
                                                 .weight(1f)
+                                                .clip(RoundedCornerShape(12.dp))
+                                                .background(Color.White.copy(alpha = 0.15f))
+                                                .padding(horizontal = 10.dp),
+                                            contentAlignment = Alignment.CenterStart
                                         ) {
                                             Row(
-                                                modifier = Modifier
-                                                    .fillMaxSize()
-                                                    .padding(horizontal = 10.dp),
+                                                modifier = Modifier.fillMaxSize(),
                                                 verticalAlignment = Alignment.CenterVertically,
                                                 horizontalArrangement = Arrangement.spacedBy(6.dp)
                                             ) {
-                                                Icon(imageVector = Icons.Filled.DateRange, contentDescription = null, tint = MaterialTheme.colorScheme.secondary, modifier = Modifier.size(18.dp))
+                                                Icon(imageVector = Icons.Filled.DateRange, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimary, modifier = Modifier.size(18.dp))
                                                 Text("${routines.size} routines", color = MaterialTheme.colorScheme.onPrimary, style = MaterialTheme.typography.labelSmall, maxLines = 1)
                                             }
                                         }
@@ -480,15 +476,12 @@ fun DashboardScreen(
             }
             
             // Enhanced Gesture Hint Card
-            Card(
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 12.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.7f)
-                ),
-                shape = RoundedCornerShape(16.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                    .padding(horizontal = 16.dp, vertical = 12.dp)
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.5f))
             ) {
                 Row(
                     modifier = Modifier.padding(14.dp),
@@ -711,9 +704,11 @@ fun ExerciseItem(
         animationSpec = tween(durationMillis = 300)
     )
     
-    Card(
+    Box(
         modifier = modifier
             .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(backgroundColor)
             .pointerInput(Unit) {
                 detectHorizontalDragGestures(
                     onDragEnd = {
@@ -735,15 +730,7 @@ fun ExerciseItem(
             .combinedClickable(
                 onClick = onClick,
                 onLongClick = onDelete
-            ),
-        shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = backgroundColor
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = if (exercise.isCompleted) 1.dp else 4.dp,
-            pressedElevation = 8.dp
-        )
+            )
     ) {
         Row(
             modifier = Modifier
@@ -994,15 +981,9 @@ fun RoutineItem(
             .combinedClickable(
                 onClick = onClick,
                 onLongClick = onDelete
-            ),
-        shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = backgroundColor
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = if (routine.isCompleted) 1.dp else 4.dp,
-            pressedElevation = 8.dp
-        )
+            )
+            .clip(RoundedCornerShape(20.dp))
+            .background(backgroundColor)
     ) {
         Row(
             modifier = Modifier

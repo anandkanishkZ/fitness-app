@@ -1,5 +1,7 @@
 package com.natrajtechnology.fitfly.ui.viewmodel
 
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
@@ -12,8 +14,8 @@ import kotlinx.coroutines.launch
 /**
  * ViewModel for authentication operations
  */
-class AuthViewModel : ViewModel() {
-    private val authRepository = AuthRepository()
+class AuthViewModel(context: Context? = null) : ViewModel() {
+    private val authRepository = AuthRepository(context)
 
     private val _authState = MutableStateFlow<AuthState>(AuthState.Initial)
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
@@ -26,6 +28,9 @@ class AuthViewModel : ViewModel() {
 
     private val _passwordUiState = MutableStateFlow<UiState>(UiState.Initial)
     val passwordUiState: StateFlow<UiState> = _passwordUiState.asStateFlow()
+
+    private val _photoUploadUiState = MutableStateFlow<UiState>(UiState.Initial)
+    val photoUploadUiState: StateFlow<UiState> = _photoUploadUiState.asStateFlow()
 
     init {
         checkAuthStatus()
@@ -150,6 +155,27 @@ class AuthViewModel : ViewModel() {
 
     fun clearPasswordUiState() {
         _passwordUiState.value = UiState.Initial
+    }
+
+    fun updateProfilePhoto(photoUri: Uri) {
+        viewModelScope.launch {
+            _photoUploadUiState.value = UiState.Loading
+            val result = authRepository.updateProfilePhoto(photoUri)
+
+            result.fold(
+                onSuccess = { (photoUrl, user) ->
+                    _currentUser.value = user
+                    _photoUploadUiState.value = UiState.Success("Profile photo updated")
+                },
+                onFailure = { error ->
+                    _photoUploadUiState.value = UiState.Error(error.message ?: "Photo upload failed")
+                }
+            )
+        }
+    }
+
+    fun clearPhotoUploadUiState() {
+        _photoUploadUiState.value = UiState.Initial
     }
 
     fun clearError() {

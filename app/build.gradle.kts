@@ -70,6 +70,17 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.play.services.maps)
     
+    // OkHttp for HTTP requests
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+    
+    // Retrofit for API
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    
+    // Accompanist for permissions
+    implementation(libs.accompanist.permissions)
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

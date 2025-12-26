@@ -1,15 +1,18 @@
 package com.natrajtechnology.fitfly.data.repository
 
+import android.content.Context
+import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.natrajtechnology.fitfly.data.service.CloudinaryService
 import kotlinx.coroutines.tasks.await
 
 /**
  * Repository for handling Firebase Authentication operations
  */
-class AuthRepository {
+class AuthRepository(private val context: Context? = null) {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     val currentUser: FirebaseUser?
@@ -98,5 +101,31 @@ class AuthRepository {
      */
     fun isUserLoggedIn(): Boolean {
         return currentUser != null
+    }
+
+    /**
+     * Update user's profile photo
+     * @param photoUri The URI of the photo file
+     * @return Result containing the new photo URL and updated user
+     */
+    suspend fun updateProfilePhoto(photoUri: Uri): Result<Pair<String, FirebaseUser>> {
+        return try {
+            val user = currentUser ?: throw Exception("User not logged in")
+            val appContext = context ?: throw Exception("Application context not available")
+
+            // Upload to Cloudinary with proper context
+            val uploadResult = CloudinaryService.uploadImage(appContext, photoUri)
+            val photoUrl = uploadResult.getOrThrow()
+
+            // Update Firebase user profile
+            val profileUpdates = UserProfileChangeRequest.Builder()
+                .setPhotoUri(Uri.parse(photoUrl))
+                .build()
+            user.updateProfile(profileUpdates).await()
+
+            Result.success(Pair(photoUrl, user))
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }

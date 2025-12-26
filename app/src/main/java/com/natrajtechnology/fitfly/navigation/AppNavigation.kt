@@ -19,7 +19,8 @@ import com.natrajtechnology.fitfly.ui.viewmodel.RoutineViewModel
 @Composable
 fun AppNavigation(
     navController: NavHostController,
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel,
+    onPickImage: () -> Unit = {}
 ) {
     val authState by authViewModel.authState.collectAsState()
     val startDestination = if (authViewModel.currentUser.value != null) {
@@ -93,8 +94,8 @@ fun AppNavigation(
                     navController.navigate(Screen.RoutineDetail.createRoute(routineId))
                 },
                 onMapClick = { navController.navigate(Screen.Map.route) },
-                onViewAllExercises = { /* Exercises card navigation - can stay on tab */ },
-                onViewAllRoutines = { /* Routines card navigation - can stay on tab */ }
+                onViewAllExercises = { navController.navigate(Screen.ExerciseList.route) },
+                onViewAllRoutines = { navController.navigate(Screen.RoutineList.route) }
             )
         }
 
@@ -107,7 +108,8 @@ fun AppNavigation(
                     navController.navigate(Screen.Home.route) {
                         popUpTo(0) { inclusive = true }
                     }
-                }
+                },
+                onPickImage = onPickImage
             )
         }
 
@@ -118,6 +120,20 @@ fun AppNavigation(
                 exerciseId = null,
                 onBackClick = { navController.popBackStack() },
                 onSaveSuccess = { navController.popBackStack() }
+            )
+        }
+
+        // Exercise List Screen
+        composable(Screen.ExerciseList.route) {
+            ExerciseListScreen(
+                exerciseViewModel = exerciseViewModel,
+                onBackClick = { navController.popBackStack() },
+                onExerciseClick = { exerciseId ->
+                    navController.navigate(Screen.EditExercise.createRoute(exerciseId))
+                },
+                onAddExerciseClick = {
+                    navController.navigate(Screen.AddExercise.route)
+                }
             )
         }
 
@@ -178,6 +194,19 @@ fun AppNavigation(
                 routineId = routineId,
                 onBackClick = { navController.popBackStack() },
                 onSaveSuccess = { navController.popBackStack() }
+            )
+        }
+
+        // Workouts Screen (Routine List with Analytics)
+        composable(Screen.RoutineList.route) {
+            WorkoutsScreen(
+                routineViewModel = routineViewModel,
+                onRoutineClick = { routineId ->
+                    navController.navigate(Screen.RoutineDetail.createRoute(routineId))
+                },
+                onAddRoutineClick = {
+                    navController.navigate(Screen.AddRoutine.route)
+                }
             )
         }
         

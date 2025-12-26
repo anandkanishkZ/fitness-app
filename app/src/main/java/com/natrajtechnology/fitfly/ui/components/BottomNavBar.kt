@@ -18,10 +18,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun BottomNavBar(navController: NavHostController) {
@@ -89,10 +92,12 @@ fun BottomNavBar(navController: NavHostController) {
 
     NavigationBar(
         modifier = Modifier
-            .padding(12.dp)
+            .fillMaxWidth()
+            .navigationBarsPadding()
+            .padding(horizontal = 8.dp, vertical = 6.dp)
             .clip(RoundedCornerShape(16.dp)),
         tonalElevation = 8.dp,
-        containerColor = MaterialTheme.colorScheme.surfaceVariant
+        containerColor = MaterialTheme.colorScheme.primary
     ) {
         NavigationBarItem(
             selected = currentRoute.startsWith(Screen.Dashboard.route),
@@ -102,7 +107,33 @@ fun BottomNavBar(navController: NavHostController) {
             } },
             icon = { Icon(imageVector = Icons.Filled.Home, contentDescription = "Dashboard") },
             label = { Text("Home") },
-            alwaysShowLabel = true
+            alwaysShowLabel = true,
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = Color.White,
+                selectedTextColor = Color.White,
+                indicatorColor = Color.White.copy(alpha = 0.3f),
+                unselectedIconColor = Color.White.copy(alpha = 0.7f),
+                unselectedTextColor = Color.White.copy(alpha = 0.7f)
+            )
+        )
+
+        // Workouts Menu - Dedicated Routines View
+        NavigationBarItem(
+            selected = currentRoute.startsWith(Screen.RoutineList.route),
+            onClick = { navController.navigate(Screen.RoutineList.route) {
+                popUpTo(Screen.RoutineList.route) { inclusive = false }
+                launchSingleTop = true
+            } },
+            icon = { Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "Workouts") },
+            label = { Text("Workouts") },
+            alwaysShowLabel = true,
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = Color.White,
+                selectedTextColor = Color.White,
+                indicatorColor = Color.White.copy(alpha = 0.3f),
+                unselectedIconColor = Color.White.copy(alpha = 0.7f),
+                unselectedTextColor = Color.White.copy(alpha = 0.7f)
+            )
         )
 
         // Add Button - Opens Modal (Center)
@@ -111,7 +142,14 @@ fun BottomNavBar(navController: NavHostController) {
             onClick = { showAddModal.value = true },
             icon = { Icon(imageVector = Icons.Filled.Add, contentDescription = "Add") },
             label = { Text("Add") },
-            alwaysShowLabel = true
+            alwaysShowLabel = true,
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = Color.White,
+                selectedTextColor = Color.White,
+                indicatorColor = Color.White.copy(alpha = 0.3f),
+                unselectedIconColor = Color.White.copy(alpha = 0.7f),
+                unselectedTextColor = Color.White.copy(alpha = 0.7f)
+            )
         )
 
         NavigationBarItem(
@@ -121,7 +159,14 @@ fun BottomNavBar(navController: NavHostController) {
             } },
             icon = { Icon(imageVector = Icons.Filled.Person, contentDescription = "Profile") },
             label = { Text("Profile") },
-            alwaysShowLabel = true
+            alwaysShowLabel = true,
+            colors = NavigationBarItemDefaults.colors(
+                selectedIconColor = Color.White,
+                selectedTextColor = Color.White,
+                indicatorColor = Color.White.copy(alpha = 0.3f),
+                unselectedIconColor = Color.White.copy(alpha = 0.7f),
+                unselectedTextColor = Color.White.copy(alpha = 0.7f)
+            )
         )
     }
 }
