@@ -23,7 +23,8 @@ fun AppNavigation(
     onPickImage: () -> Unit = {}
 ) {
     val authState by authViewModel.authState.collectAsState()
-    val startDestination = if (authViewModel.currentUser.value != null) {
+    val currentUser by authViewModel.currentUser.collectAsState()
+    val startDestination = if (currentUser != null) {
         Screen.Dashboard.route
     } else {
         Screen.Home.route
