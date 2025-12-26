@@ -58,7 +58,7 @@ fun SignUpScreen(
                 title = { Text("Sign Up") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -99,7 +99,7 @@ fun SignUpScreen(
                 },
                 label = { Text("Full Name") },
                 leadingIcon = {
-                    Icon(Icons.Default.Person, contentDescription = "Name")
+                    Icon(imageVector = Icons.Default.Person, contentDescription = "Name")
                 },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
@@ -123,7 +123,7 @@ fun SignUpScreen(
                 },
                 label = { Text("Email") },
                 leadingIcon = {
-                    Icon(Icons.Default.Email, contentDescription = "Email")
+                    Icon(imageVector = Icons.Default.Email, contentDescription = "Email")
                 },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
@@ -147,7 +147,7 @@ fun SignUpScreen(
                 },
                 label = { Text("Password") },
                 leadingIcon = {
-                    Icon(Icons.Default.Lock, contentDescription = "Password")
+                    Icon(imageVector = Icons.Default.Lock, contentDescription = "Password")
                 },
                 trailingIcon = {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -183,7 +183,7 @@ fun SignUpScreen(
                 },
                 label = { Text("Confirm Password") },
                 leadingIcon = {
-                    Icon(Icons.Default.Lock, contentDescription = "Confirm Password")
+                    Icon(imageVector = Icons.Default.Lock, contentDescription = "Confirm Password")
                 },
                 trailingIcon = {
                     IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {

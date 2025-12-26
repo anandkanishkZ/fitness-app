@@ -53,7 +53,7 @@ fun LoginScreen(
                 title = { Text("Login") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -91,7 +91,7 @@ fun LoginScreen(
                 onValueChange = { email = it },
                 label = { Text("Email") },
                 leadingIcon = {
-                    Icon(Icons.Default.Email, contentDescription = "Email")
+                    Icon(imageVector = Icons.Default.Email, contentDescription = "Email")
                 },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
@@ -112,7 +112,7 @@ fun LoginScreen(
                 onValueChange = { password = it },
                 label = { Text("Password") },
                 leadingIcon = {
-                    Icon(Icons.Default.Lock, contentDescription = "Password")
+                    Icon(imageVector = Icons.Default.Lock, contentDescription = "Password")
                 },
                 trailingIcon = {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {

@@ -114,7 +114,7 @@ fun MapScreen(
                 title = { Text("Workout Locations") },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, "Back")
+                        Icon(imageVector = Icons.Default.ArrowBack, "Back")
                     }
                 },
                 actions = {
@@ -139,7 +139,7 @@ fun MapScreen(
                                 }
                             }
                         ) {
-                            Icon(Icons.Default.LocationOn, "My Location")
+                            Icon(imageVector = Icons.Default.LocationOn, "My Location")
                         }
                     }
                 }
@@ -243,7 +243,7 @@ fun MapSetupScreen(onNavigateBack: () -> Unit) {
                 title = { Text("Map Setup Required") },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, "Back")
+                        Icon(imageVector = Icons.Default.ArrowBack, "Back")
                     }
                 }
             )

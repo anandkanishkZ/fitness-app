@@ -117,7 +117,7 @@ fun LocationPicker(
                 onClick = { showDialog = true },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Icon(Icons.Default.LocationOn, "Add Location")
+                Icon(imageVector = Icons.Default.LocationOn, "Add Location")
                 Spacer(modifier = Modifier.width(8.dp))
                 Text("Add Location Tag")
             }
@@ -227,7 +227,7 @@ fun LocationPicker(
                                 strokeWidth = 2.dp
                             )
                         } else {
-                            Icon(Icons.Default.LocationOn, "Get Location")
+                            Icon(imageVector = Icons.Default.LocationOn, "Get Location")
                             Spacer(modifier = Modifier.width(8.dp))
                             Text("Use Current Location")
                         }

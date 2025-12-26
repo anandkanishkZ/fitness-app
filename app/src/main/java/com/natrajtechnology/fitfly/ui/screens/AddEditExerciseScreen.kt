@@ -92,7 +92,7 @@ fun AddEditExerciseScreen(
                 title = { Text(if (isEditMode) "Edit Exercise" else "Add Exercise") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 }
             )

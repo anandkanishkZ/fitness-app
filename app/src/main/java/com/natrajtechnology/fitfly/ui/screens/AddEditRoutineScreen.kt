@@ -145,7 +145,7 @@ fun AddEditRoutineScreen(
                 title = { Text(if (isEditMode) "Edit Routine" else "Create Routine") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -208,7 +208,7 @@ fun AddEditRoutineScreen(
                 onClick = { showExerciseSelector = true },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Icon(Icons.Default.Add, contentDescription = null)
+                Icon(imageVector = Icons.Default.Add, contentDescription = null)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text("Select Exercises")
             }

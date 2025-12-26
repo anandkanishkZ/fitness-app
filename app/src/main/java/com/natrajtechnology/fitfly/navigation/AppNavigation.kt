@@ -92,7 +92,9 @@ fun AppNavigation(
                 onRoutineClick = { routineId ->
                     navController.navigate(Screen.RoutineDetail.createRoute(routineId))
                 },
-                onMapClick = { navController.navigate(Screen.Map.route) }
+                onMapClick = { navController.navigate(Screen.Map.route) },
+                onViewAllExercises = { /* Exercises card navigation - can stay on tab */ },
+                onViewAllRoutines = { /* Routines card navigation - can stay on tab */ }
             )
         }
 

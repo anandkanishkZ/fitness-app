@@ -53,7 +53,7 @@ fun RoutineDetailScreen(
     if (showSmsDialog && routine != null) {
         AlertDialog(
             onDismissRequest = { showSmsDialog = false },
-            icon = { Icon(Icons.Default.Send, contentDescription = null) },
+            icon = { Icon(imageVector = Icons.Default.Send, contentDescription = null) },
             title = { Text("Send via SMS") },
             text = {
                 Column(
@@ -67,7 +67,7 @@ fun RoutineDetailScreen(
                         label = { Text("Phone Number") },
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = true,
-                        leadingIcon = { Icon(Icons.Default.Phone, contentDescription = null) }
+                        leadingIcon = { Icon(imageVector = Icons.Default.Phone, contentDescription = null) }
                     )
                     
                     OutlinedTextField(
@@ -121,15 +121,15 @@ fun RoutineDetailScreen(
                 title = { Text("Routine Details") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 },
                 actions = {
                     IconButton(onClick = onEditClick) {
-                        Icon(Icons.Default.Edit, contentDescription = "Edit")
+                        Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit")
                     }
                     IconButton(onClick = { showSmsDialog = true }) {
-                        Icon(Icons.Default.Send, contentDescription = "Send via SMS")
+                        Icon(imageVector = Icons.Default.Send, contentDescription = "Send via SMS")
                     }
                 }
             )
@@ -203,11 +203,11 @@ fun RoutineDetailScreen(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            Icon(
-                                Icons.Default.Person,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary
-                            )
+                                    Icon(
+                                        imageVector = Icons.Default.Person,
+                                        contentDescription = null,
+                                        tint = MaterialTheme.colorScheme.primary
+                                    )
                             Text(
                                 text = "Equipment Checklist",
                                 style = MaterialTheme.typography.titleMedium,
@@ -295,7 +295,7 @@ fun RoutineDetailScreen(
                     onClick = { showSmsDialog = true },
                     modifier = Modifier.weight(1f)
                 ) {
-                    Icon(Icons.Default.Send, contentDescription = null)
+                    Icon(imageVector = Icons.Default.Send, contentDescription = null)
                     Spacer(modifier = Modifier.width(8.dp))
                     Text("Send SMS")
                 }

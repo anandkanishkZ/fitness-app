@@ -2,10 +2,14 @@ package com.natrajtechnology.fitfly.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,19 +37,32 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // App Logo (using icon for now)
-            Icon(
-                painter = painterResource(id = android.R.drawable.ic_menu_compass),
-                contentDescription = "FitLife Logo",
-                modifier = Modifier.size(120.dp),
-                tint = MaterialTheme.colorScheme.primary
-            )
+            // Modern FitFly Logo
+            Surface(
+                modifier = Modifier
+                    .size(120.dp)
+                    .clip(CircleShape),
+                color = MaterialTheme.colorScheme.primary,
+                shadowElevation = 8.dp
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.FavoriteBorder,
+                        contentDescription = "FitFly Logo",
+                        modifier = Modifier.size(70.dp),
+                        tint = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
+            }
             
             Spacer(modifier = Modifier.height(24.dp))
             
             // App Name
             Text(
-                text = "FitLife",
+                text = "FitFly",
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontWeight = FontWeight.Bold,
                     fontSize = 48.sp
